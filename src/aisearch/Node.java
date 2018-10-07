@@ -15,6 +15,7 @@ public class Node {
     public Node up;
     public int number; //used for debugging
     public boolean isGoal=false;
+    public boolean checked=false;
     
     public Node(int num){
         number=num;
@@ -24,6 +25,9 @@ public class Node {
     }
     public int getNumber(){
         return number;
+    }
+    public boolean equalNode(Node other){
+        return number==other.number;
     }
     
 }

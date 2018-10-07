@@ -16,31 +16,19 @@ public class AIsearch {
     private static int height;
     public static void main(String[] args) throws Exception {
         
-        int[][] numberedMap=loadMap("medium maze.txt"); //numberedMap is used initially for setting up nodes and drawing
+        //int[][] numberedMap=loadMap("medium maze.txt"); //numberedMap is used initially for setting up nodes and drawing
+        int[][] numberedMap=loadMap("large maze.txt");
+        //int[][] numberedMap=loadMap("open maze.txt");
+        
         height=numberedMap.length;
         width=numberedMap[0].length;
         tiles=linkNodes(numberedMap); //tiles is the finished, linked graph of nodes
         
         mazeDrawer.getInstance();
         mazeDrawer.setBoard(numberedMap);
-        //loadMap("large maze.txt");
         
-        //example use of update board to draw a path
-        //  its easier just to call on expansion
-        int y1=start.getNumber()/width;
-        int x1=start.getNumber()%width;
-        int delay=500;
-        mazeDrawer.updateBoard(x1+1,y1,0);
-        sleep(delay); //slows down to show path slowly expand
-        mazeDrawer.updateBoard(x1+2,y1,0);
-        sleep(delay);
-        mazeDrawer.updateBoard(x1+2,y1-1,0);
-        sleep(delay);
-        mazeDrawer.updateBoard(x1+2,y1-2,0);
-        sleep(delay);
-        mazeDrawer.updateBoard(x1+1,y1-2,0);
-        sleep(delay);
-        mazeDrawer.updateBoard(x1,y1-2,0);
+        //just dfs body so far, need to split on case
+        SearchMethods DFS=new SearchMethods(start);
 
 
     }
