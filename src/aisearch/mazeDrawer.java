@@ -17,8 +17,8 @@ public class mazeDrawer extends JFrame{
     private static BufferedImage drawer;
     private static JPanel boardPanel;
     private static mazeDrawer inst=null;
-    public static int height;
-    public static int width;
+    private static int height;
+    private static int width;
 
     //using static to ease repainting, personal preference
     public static mazeDrawer getInstance() throws IOException{
@@ -102,13 +102,13 @@ public class mazeDrawer extends JFrame{
         //TODO: recolor to have shades of something indicate closeness?
         switch (type) {
             case 0:
-                g.setColor(Color.yellow); //explored node
+                g.setColor(Color.yellow); //current node
                 break;
             case 1:
-                g.setColor(Color.red); //current
+                g.setColor(Color.yellow); //
                 break;
             case 2:
-                g.setColor(Color.cyan); //path to goal
+                g.setColor(Color.blue); //
                 break;
             default:
                 g.setColor(Color.orange);   //frontier
@@ -120,7 +120,6 @@ public class mazeDrawer extends JFrame{
         
         mazeDrawer.getInstance();	//Repaint board to show changes
         g.dispose();	//Free up space from Graphics g
-        
         
     }
 }
