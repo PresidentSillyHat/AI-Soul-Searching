@@ -111,7 +111,7 @@ public class mazeDrawer extends JFrame{
                 g.setColor(Color.cyan); //path to goal
                 break;
             default:
-                g.setColor(Color.pink);   //
+                g.setColor(Color.orange);   //frontier
                 break;
             }
         g.fillRect(x, y, tileWidth, tileHeight);

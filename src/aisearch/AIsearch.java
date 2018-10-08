@@ -1,7 +1,6 @@
 package aisearch;
 
 import java.io.FileReader;
-import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +11,15 @@ import java.util.List;
 public class AIsearch {
     private static Node[] tiles;  //nodes are placed in specific order, node N=numberedMap[N/width][N%width]
     private static Node start;  //starting node to be put into searches
+    private static Node goal; //goal for informed
     private static int width;
     private static int height;
     public static void main(String[] args) throws Exception {
         
-        //int[][] numberedMap=loadMap("medium maze.txt"); //numberedMap is used initially for setting up nodes and drawing
-        int[][] numberedMap=loadMap("large maze.txt");
-        //int[][] numberedMap=loadMap("open maze.txt");
+        //numberedMap is used initially for setting up nodes and drawing
+        //int[][] numberedMap=loadMap("medium maze.txt"); 
+        //int[][] numberedMap=loadMap("large maze.txt");
+        int[][] numberedMap=loadMap("open maze.txt");
         
         height=numberedMap.length;
         width=numberedMap[0].length;
@@ -27,8 +28,9 @@ public class AIsearch {
         mazeDrawer.getInstance();
         mazeDrawer.setBoard(numberedMap);
         
-        //just dfs body so far, need to split on case
-        SearchMethods DFS=new SearchMethods(start);
+        //DFS:1, BFS:2, Greedy:3, A*:4
+        SearchMethods DFS=new SearchMethods(start,1,goal); 
+        //SearchMethods Astar=new SearchMethods(start,4,goal);
 
 
     }
@@ -103,7 +105,7 @@ public class AIsearch {
                 }
                 //only have to check on L/R link pass, 0 and length-1 are always walls
                 if(map[i][j]==2){start=Maze[nodeNum];System.out.println("Starting at "+start);}
-                if(map[i][j]==3){Maze[nodeNum].isGoal=true;}
+                if(map[i][j]==3){goal=Maze[nodeNum];Maze[nodeNum].isGoal=true;}
                 
                 nodeNum++;
             }
